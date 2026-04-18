@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>O Código do Consultório Cirúrgico</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#e5a81b",
+                        "primary-hover": "#c89215",
+                        "surface": "#000000",
+                        "surface-variant": "#111111",
+                        "on-surface": "#ffffff",
+                        "on-surface-variant": "#a3a3a3",
+                    },
+                    "fontFamily": {
+                        "headline": ["Josefin Sans", "sans-serif"],
+                        "body": ["Manrope", "sans-serif"],
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; background-color: #000000; color: #ffffff; }
+        h1, h2, h3, h4, h5, h6, .font-headline { font-family: 'Josefin Sans', sans-serif; }
+        
+        .gold-text { color: #e5a81b; }
+        
+        .btn-gold {
+            background-color: #e5a81b;
+            color: #000000;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px rgba(229, 168, 27, 0.25);
+        }
+        .btn-gold:hover {
+            background-color: #c89215;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(229, 168, 27, 0.4);
+        }
+
+        /* Fluid/Organic Section Separators */
+        .gradient-separator {
+            background: radial-gradient(ellipse at center, rgba(229,168,27,0.1) 0%, rgba(0,0,0,0) 70%);
+            height: 200px;
+            width: 100%;
+            margin: -100px 0;
+            position: relative;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .glass-panel {
+            background: rgba(30, 30, 30, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 2rem;
+            box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden selection:bg-primary selection:text-black">
+<!-- Section 1 & 2: Hero -->
+<section class="relative min-h-screen flex flex-col items-center justify-center pt-20 pb-32 px-6 text-center z-10">
+<div class="absolute inset-0 z-0 opacity-20">
+<img alt="Surgical Background" class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcCTm0tMM_dTc8L84paP5XnycoSnGGtST0bpCt7XaVPH24cRpVhE33tXU9B8XImAhiDNj80p9Z6kmBYZYm3TecwOg1u6fJ3W00YY7qKbMWWIgtd1g_8DX7SN9WDpp5JLMGqgYGXXMktKRPSmgvkfymqMkMiTw1q9sMv_fl1AX9PsHgQlpHnpFaKeui8MMLLNuD2zBYinLtIGefqWj2dKrNCeJuUg_CqGq_ItpW8ghVUCZBLz2yHLKXeuZgkBpjKDBnxvr7iEB9FtU" style=""/>
+<div class="absolute inset-0 bg-gradient-to-b from-transparent to-black"></div>
+</div>
+<div class="relative z-10 max-w-4xl mx-auto flex flex-col items-center space-y-12">
+<img alt="O Código do Consultório Cirúrgico" class="w-64 md:w-80 h-auto mb-8" src="https://lh3.googleusercontent.com/aida/ADBb0uhIcEaGcFmE2r7b98-IFl4ItkKwX0Lc80jDgEtbZ_HJbbly9LdwUsoRM84TS63fJ5ykgjAhfrGfctAIXL31Qs2hTDn5c5vr2hh7sXmiixrETG1v4EQPGqbQDngbBzwfRbl9AX8RKt6JrKXSOcRAcb8QjVqYzb5xVYQaovEX9Rr3ReU_RrS0rP8S-at2zKxg5d19HgBwJ-gq_KffOqCNwHA4G9xK5bgBKJxAHsuWoHpXcXqgnhNJioVLODe3O4Li5hsatHuFpcvUXQ" style=""/>
+<h1 class="font-headline text-4xl md:text-6xl font-bold leading-tight tracking-tight" style="">
+                Dobre seu volume de cirurgias com <span class="gold-text" style="">3 simples ajustes</span>
+</h1>
+<h2 class="text-xl md:text-2xl text-on-surface-variant font-body font-light max-w-3xl" style="">
+                sem depender de atender mais pacientes e sem investir em marketing, equipe ou consultório
+            </h2>
+<div class="pt-8">
+<a class="btn-gold px-10 py-5 rounded-full font-bold text-lg md:text-xl flex items-center justify-center gap-3 w-full sm:w-auto mx-auto" href="#inscricao" style="">
+                    Quero participar do Código do Consultório Cirúrgico!
+                </a>
+</div>
+</div>
+</section>
+<div class="gradient-separator"></div>
+<!-- Section 3: Event Details -->
+<section class="py-24 px-6 relative z-10">
+<div class="max-w-3xl mx-auto text-center space-y-8 glass-panel p-12">
+<h2 class="font-headline text-3xl md:text-5xl font-bold gold-text" style="">O Código do Consultório Cirúrgico</h2>
+<div class="space-y-4 text-lg md:text-xl text-on-surface-variant">
+<p class="flex items-center justify-center gap-3" style="">
+<span class="material-symbols-outlined gold-text" style="">calendar_month</span>Domingo 17 de maio, das 08h00 às 12h00
+                </p>
+<p class="flex items-center justify-center gap-3" style="">
+<span class="material-symbols-outlined gold-text" style="">videocam</span>Ao vivo pelo zoom
+                </p>
+<p class="flex items-center justify-center gap-3" style="">
+<span class="material-symbols-outlined gold-text" style="">medical_services</span>De Cirurgião para Cirurgião
+                </p>
+</div>
+</div>
+</section>
+<!-- Section 4: Dynamic Banner -->
+<section class="py-12 bg-primary text-black text-center px-6">
+<h2 class="font-headline text-xl md:text-2xl font-bold uppercase tracking-wider" style="">
+            Não atendemos às necessidades de veterinários ou dentistas.
+        </h2>
+</section>
+<!-- Section 5: The Problem -->
+<section class="py-32 px-6 relative z-10 text-center">
+<div class="max-w-4xl mx-auto space-y-12">
+<p class="text-2xl md:text-3xl font-headline leading-relaxed" style="">
+                Enquanto você opera, o paciente está dormindo! Ele não sabe avaliar sua habilidade como médico cirurgião.
+            </p>
+<p class="text-xl text-on-surface-variant max-w-3xl mx-auto" style="">
+                Competência técnica é fundamental, mas não é suficiente para garantir que seu consultório "cresça naturalmente".</p><div><br/></div><div>Pacientes escolhem cirurgiões que:
+            </div><p></p>
+<div class="grid md:grid-cols-3 gap-8 pt-12">
+<div class="flex flex-col items-center text-center space-y-4">
+<div class="w-16 h-16 rounded-full border border-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-3xl" style="">handshake</span>
+</div>
+<p class="text-lg" style="">o acolhem com confiança e clareza</p>
+</div>
+<div class="flex flex-col items-center text-center space-y-4">
+<div class="w-16 h-16 rounded-full border border-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-3xl" style="">request_quote</span>
+</div>
+<p class="text-lg" style="">não hesitam ao passar o orçamento</p>
+</div>
+<div class="flex flex-col items-center text-center space-y-4">
+<div class="w-16 h-16 rounded-full border border-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-3xl" style="">monitor_heart</span>
+</div>
+<p class="text-lg" style="">o acompanham adequadamente no perioperatório</p>
+</div>
+</div>
+</div>
+</section>
+<div class="gradient-separator"></div>
+<!-- Section 6: Method -->
+<section class="py-32 px-6 relative z-10 bg-surface-variant/30">
+<div class="max-w-4xl mx-auto text-center space-y-16">
+<div class="space-y-6">
+<p class="text-xl md:text-2xl text-on-surface-variant" style="">Ter maior volume de cirurgias não é sobre convencer o paciente entre operar ou não operar.</p>
+<p class="text-2xl md:text-3xl font-headline font-bold gold-text" style="">É sobre convencer o paciente a operar com você e não com outro cirurgião!</p>
+<p class="text-lg text-on-surface-variant" style="">É por isso que no Código do Consultório Cirúrgico, te ensinaremos os três ajustes que te permitirão dobrar seu volume de cirurgias eletivas:</p>
+</div>
+<div class="space-y-12 text-left max-w-3xl mx-auto">
+<div class="glass-panel p-8">
+<h3 class="font-headline font-bold text-2xl md:text-3xl mb-3 gold-text flex items-center gap-4" style="">
+<span class="material-symbols-outlined text-3xl" style="">verified_user</span> Confiança
+                    </h3>
+<p class="text-lg text-on-surface-variant" style="">Como fazer o paciente se sentir verdadeiramente acolhido em todas as etapas do atendimento. Aqui você vira o dono do paciente.</p>
+</div>
+<div class="glass-panel p-8">
+<h3 class="font-headline font-bold text-2xl md:text-3xl mb-3 gold-text flex items-center gap-4" style="">
+<span class="material-symbols-outlined text-3xl" style="">payments</span> Orçamento
+                    </h3>
+<p class="text-lg text-on-surface-variant" style="">Vamos te mostrar um modelo validado de preparação e apresentação de orçamento de cirurgias.</p>
+</div>
+<div class="glass-panel p-8">
+<h3 class="font-headline font-bold text-2xl md:text-3xl mb-3 gold-text flex items-center gap-4" style="">
+<span class="material-symbols-outlined text-3xl" style="">support_agent</span> Acompanhamento
+                    </h3>
+<p class="text-lg text-on-surface-variant" style="">Como acompanhar o paciente durante sua tomada de decisão.</p>
+</div>
+</div>
+<a class="btn-gold px-10 py-5 rounded-full font-bold text-lg md:text-xl inline-flex items-center justify-center gap-3 mx-auto mt-12" href="#inscricao" style="">
+                Quero participar do Código do Consultório Cirúrgico!
+            </a>
+</div>
+</section>
+<!-- Section 7: Target Audience -->
+<section class="py-32 px-6 relative z-10 text-center">
+<div class="absolute inset-0 z-0">
+<img alt="Medical Consultation" class="w-full h-full object-cover grayscale opacity-20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIsFgMoGAeF6InfY5iF2dZQLaBDYLMlaZ0gH9EoXcvg9Z4NQsTU5ckslJTsZAND1wqQjW8ePglhbsyUPpfShIgbMkU7NCfLSo9VkXl7g5PbzBMK2d-FrPsjAqYEFU0GfvLuPC3yTisoHvv6FPOdI1xNdxxWjCfKmonccffcMvzdqhPaIUE55Qh9elPPH1wkSHyZmUjkc9QjKjFv3SNFriQgI_ZFzyDd8NX8hpfu0juaC8Y3ecpi4RJDw8GYHF1c_RV6SqHFp8xDSI"/>
+<div class="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black"></div>
+</div>
+<div class="max-w-4xl mx-auto space-y-12 relative z-10">
+<h2 class="font-headline text-3xl md:text-5xl font-bold" style="">Este evento é para você se você é <span class="gold-text" style="">cirurgião e...</span></h2>
+<ul class="space-y-6 text-lg text-on-surface-variant max-w-2xl mx-auto text-left">
+<li class="flex items-start gap-4" style="">
+<span class="material-symbols-outlined text-primary shrink-0 mt-1" style="">check</span>
+                    acreditou erroneamente que, tendo capacidade técnica, o consultório "cresce naturalmente"
+                </li>
+<li class="flex items-start gap-4" style="">
+<span class="material-symbols-outlined text-primary shrink-0 mt-1" style="">check</span>
+                    quer operar mais cirurgias eletivas próprias mas não sabe por onde começar
+                </li>
+<li class="flex items-start gap-4" style="">
+<span class="material-symbols-outlined text-primary shrink-0 mt-1" style="">check</span>
+                    sente que seu consultório cirúrgico não engrena
+                </li>
+<li class="flex items-start gap-4" style="">
+<span class="material-symbols-outlined text-primary shrink-0 mt-1" style="">check</span>
+                    não sabe precificar suas cirurgias e se sente inseguro para apresentar orçamento
+                </li>
+<li class="flex items-start gap-4" style="">
+<span class="material-symbols-outlined text-primary shrink-0 mt-1" style="">check</span>
+                    atende um volume alto de consultas clínicas em que não há indicação cirúrgica
+                </li>
+</ul>
+<p class="text-sm text-on-surface-variant/50" style="">(não atendemos dentistas ou veterinários)</p>
+</div>
+</section>
+<div class="gradient-separator"></div>
+<!-- Section 8: Before & After -->
+<section class="py-24 px-6 relative z-10">
+<div class="max-w-5xl mx-auto">
+<div class="grid md:grid-cols-2 gap-8">
+<!-- Como é hoje -->
+<div class="glass-panel p-8 md:p-12 border-red-500/20 bg-red-950/10">
+<div class="text-center mb-8">
+<span class="material-symbols-outlined text-5xl text-red-500/80 mb-2">cancel</span>
+<h3 class="font-headline text-2xl md:text-3xl font-bold text-on-surface">Como é hoje</h3>
+</div>
+<ul class="space-y-8">
+<li class="flex items-start gap-4 text-on-surface-variant text-lg">
+<span class="material-symbols-outlined text-red-500/80 shrink-0 mt-1">close</span>
+                        Fica esperando o consultório crescer naturalmente com o tempo por ser um bom cirurgião tecnicamente.
+                    </li>
+<li class="flex items-start gap-4 text-on-surface-variant text-lg">
+<span class="material-symbols-outlined text-red-500/80 shrink-0 mt-1">close</span>
+                        Inseguro ao passar orçamentos.
+                    </li>
+<li class="flex items-start gap-4 text-on-surface-variant text-lg">
+<span class="material-symbols-outlined text-red-500/80 shrink-0 mt-1">close</span>
+                        Envia o orçamento e reza para o paciente fechar.
+                    </li>
+</ul>
+</div>
+<!-- Com o Código -->
+<div class="glass-panel p-8 md:p-12 border-primary/30 bg-primary/5">
+<div class="text-center mb-8">
+<span class="material-symbols-outlined text-5xl gold-text mb-2">check_circle</span>
+<h3 class="font-headline text-2xl md:text-3xl font-bold gold-text">Com o Código</h3>
+</div>
+<ul class="space-y-8">
+<li class="flex items-start gap-4 text-on-surface-variant text-lg">
+<span class="material-symbols-outlined gold-text shrink-0 mt-1">check</span>
+                        Tem uma estrutura estratégica que faz o consultório crescer de verdade.
+                    </li>
+<li class="flex items-start gap-4 text-on-surface-variant text-lg">
+<span class="material-symbols-outlined gold-text shrink-0 mt-1">check</span>
+                        Apresenta o orçamento com clareza e confiança.
+                    </li>
+<li class="flex items-start gap-4 text-on-surface-variant text-lg">
+<span class="material-symbols-outlined gold-text shrink-0 mt-1">check</span>
+                        Tem processos estruturados que fazem o paciente fechar.
+                    </li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 9 & 10: Pricing -->
+<section class="py-32 px-6 relative z-10" id="inscricao">
+<div class="absolute inset-0 z-0">
+<img alt="Professional Clinic Setting" class="w-full h-full object-cover grayscale opacity-30" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAH55DS1Wme55IYj9sCTfPAz6NGAet4n9uMWLdz03WCiceOEyPEoCBw6ZFrHR8eUjbk_yvXTxcu_UnIlZWW7kUgPqaLnUjGOu5UQ03il39-ANEXMCwKrJcFy4jOTgKgr5MJLsJBOH5YZIFhDMPIJIBcBYMrl8fHnJowgmZg_vytQBw_FEoO7rXXd5R6ka6EsF-a51ur9NcrenEOt3Yk4rrZR6q-EDxLfDvUaDch0ry_IUXRqphpbHMt_ZppNH55ql65jYM6PfXlYUM"/>
+<div class="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black"></div>
+</div>
+<div class="relative z-10 max-w-4xl mx-auto text-center space-y-16">
+<p class="text-2xl font-headline leading-relaxed" style="">
+                Se o conhecimento que você adquirir aqui te auxiliar em fechar uma única cirurgia, você terá quitado inúmeras vezes o valor do seu investimento:
+            </p>
+<div class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+<!-- Standard -->
+<div class="glass-panel p-10 flex flex-col items-center justify-center">
+<h3 class="font-headline text-2xl md:text-3xl font-bold mb-4" style="">Ingresso Comum</h3>
+<div class="mb-8">
+<span class="text-4xl font-headline font-bold gold-text" style="">R$ 297</span>
+</div>
+<p class="text-on-surface-variant text-sm mb-8 text-center h-12" style="">Acesso ao vivo ao conteúdo masterclass.</p>
+</div>
+<!-- VIP -->
+<div class="glass-panel p-10 flex flex-col items-center justify-center border-primary/50 relative overflow-hidden">
+<div class="absolute top-0 right-0 bg-primary text-black text-xs font-bold px-4 py-1 rounded-bl-lg" style="">
+                        RECOMENDADO
+                    </div>
+<h3 class="font-headline text-2xl md:text-3xl font-bold mb-4 gold-text" style="">Ingresso VIP</h3>
+<div class="mb-8">
+<span class="text-4xl font-headline font-bold gold-text" style="">R$ 597</span>
+</div>
+<p class="text-on-surface-variant text-sm mb-8 text-center h-12" style="">Dá acesso à gravação do conteúdo por 7 dias.</p>
+</div>
+</div>
+<a class="btn-gold px-12 py-6 rounded-full font-bold text-xl inline-flex items-center justify-center mx-auto w-full md:w-auto" href="#" style="">
+                Quero participar do Código do Consultório Cirúrgico!
+            </a>
+</div>
+</section>
+<!-- Section 11: Guarantee -->
+<section class="py-24 px-6 relative z-10 text-center">
+<div class="max-w-3xl mx-auto glass-panel p-10 border-primary/20">
+<span class="material-symbols-outlined text-5xl gold-text mb-6" style="">verified</span>
+<h3 class="font-headline text-2xl md:text-3xl font-bold mb-4" style="">Garantia Incondicional</h3>
+<p class="text-lg text-on-surface-variant" style="">
+                Se você comprovar que participou da imersão ao vivo conosco e achar que o conteúdo NÃO VALEU o seu investimento, devolvemos seu investimento de forma integral em até 7 dias depois da data da masterclass!
+            </p>
+</div>
+</section>
+<div class="gradient-separator"></div>
+<!-- Section 8 & 13: Mentors/Biography -->
+<section class="py-32 px-6 relative z-10 text-center">
+<div class="max-w-6xl mx-auto">
+<h2 class="font-headline text-3xl md:text-5xl font-bold mb-16" style="">Quem vai te ensinar o <span class="gold-text" style="">Código do Consultório Cirúrgico?</span></h2>
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+<!-- Mentor 1 -->
+<div class="flex flex-col items-center space-y-6">
+<div class="w-48 h-48 rounded-full overflow-hidden border-2 border-primary/30">
+<img alt="Marcelo Portocarrero" class="w-full h-full object-cover grayscale opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArmGhGJ7JbpCjsoX8JybCf9tZEZ358U6JGGbZoilMZhvM6xQMKdkcyVXYMX4UnGoBA4F5tKRWUeMDv2fr0egIwyuFMj0nWAtpHD_ZPaYwVL_VC5Ryx1TYao3VcJIl3GzTYcKdoxXr_JKKefotAi4ozBihk-gr8mT8Q18EhxmywTPmyNmKjNteRO7GafVNT2rdWb1hNdiS7I52PqN9Gu3wPBl3gsb3BPShyC9TIoedTfZZtKrgi0kw22PjXj-vLA1kc36eysyACG8s" style=""/>
+</div>
+<div>
+<h4 class="font-headline text-xl font-bold gold-text" style="">Marcelo Portocarrero</h4>
+<p class="text-sm text-on-surface-variant mt-2" style="">Cirurgião Plástico formado pela USP, sócio diretor do Day Hospital SelfDay.</p>
+</div>
+</div>
+<!-- Mentor 2 -->
+<div class="flex flex-col items-center space-y-6">
+<div class="w-48 h-48 rounded-full overflow-hidden border-2 border-primary/30">
+<img alt="Lauro Matos" class="w-full h-full object-cover grayscale opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBheB5cbqFaMm6W1zYF21ixHTHn5b_Zk35oH2DgQBKqNTDFNCV8XW-qrI7f9f3u6zlziUxlHnEef8X8fExcw7SNB95oSy-ws47r-DdHJ_v1LOpXlNosaWBsYHffA6FKgJvD51KlS4WXphkjtryWcy0TlZkgz0_ZSpz5c_IlyLzpauewiHczr_C_ROLmgUg-ibh9Pumn4nwKr1-fjfgbfQSkWu32kNua58Ye32wlnWKw8h0I9EXoHUGKz4Am3FPMzLuWf7bIBvb_8Ag" style=""/>
+</div>
+<div>
+<h4 class="font-headline text-xl font-bold gold-text" style="">Lauro Matos</h4>
+<p class="text-sm text-on-surface-variant mt-2" style="">Cirurgião de Cabeça e Pescoço, sócio fundador do Núcleo Integrado de Cirurgia e Endocrinologia.</p>
+</div>
+</div>
+<!-- Mentor 3 -->
+<div class="flex flex-col items-center space-y-6">
+<div class="w-48 h-48 rounded-full overflow-hidden border-2 border-primary/30">
+<img alt="João Estrela" class="w-full h-full object-cover grayscale opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDssjWz3IF7UAA28K_pUnCjSA1VlLSZ5Xw8BT1CmRvAcrD5mLcEsERlmK-g0ZaDKus-upjGNBnTfXcc1eWZxofXLIo9bPaUcoySbQbO2EYZkvNXY7MozmeRAqxWu34nDAhSXVyDWV2oiwt8DXcLdcGaskrXORihhUur8-6KEakJDRByHChGYoMykZgOeVk_51Vc7f3T4FfhNQVpes28TrfTeOQUODTM6t62M8KPTKWfqlSscm-ide_UUcCR-c-m24XG4B3CkL6TYHo" style=""/>
+</div>
+<div>
+<h4 class="font-headline text-xl font-bold gold-text" style="">João Estrela</h4>
+<p class="text-sm text-on-surface-variant mt-2" style="">Urologista e Cirurgião Robótico, além de sócio fundador da Clínica URO.</p>
+</div>
+</div>
+<!-- Mentor 4 -->
+<div class="flex flex-col items-center space-y-6">
+<div class="w-48 h-48 rounded-full overflow-hidden border-2 border-primary/30">
+<img alt="Eutímio Brasil" class="w-full h-full object-cover grayscale opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgTeNpts6ZTEKEOXIySUhILCAdV8lnlwvuQ-RsL8WbbivSm_YdDyOiD5_Brctb7rKGIh3AonOpTVkrLrIyh3W42swht6hRzZj5jqBBsgyAy-jvZfh0UccsB2ZtuGe1diMQQs_9T_MrPPum3GNEmOrYa8_Skd-RyOfFmW8v1-24TRgaYwIAJxbUh2_DVI4-UTKccLtHocBGKlzQaUNmDwL197WLWgmUcmPEADbfpkGmhcaUUiBvXj4OygeY4JCcDerOei6odWQIAJ0" style=""/>
+</div>
+<div>
+<h4 class="font-headline text-xl font-bold gold-text" style="">Eutímio Brasil</h4>
+<p class="text-sm text-on-surface-variant mt-2" style="">Cirurgião Vascular, sócio da Clínica CLAP e sócio fundador da CLAP Varizes.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="py-12 px-6 text-center border-t border-surface-variant/50 text-on-surface-variant text-sm">
+<p class="" style="">© 2024 O Código do Consultório Cirúrgico. Todos os direitos reservados.</p>
+</footer>
+</body></html>
