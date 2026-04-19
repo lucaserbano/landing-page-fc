@@ -166,34 +166,37 @@
   .geo-decor {
     position: absolute;
     pointer-events: none;
-    opacity: 0.10;
+    opacity: 0.07;
     color: #ffffff;
     z-index: 0;
   }
   .geo-square {
     border: 1.5px solid currentColor;
+    transform: scale(1.5);
+    transform-origin: center;
   }
   .geo-dots-2x2 {
     display: grid;
-    grid-template-columns: repeat(2, 22px);
-    grid-template-rows: repeat(2, 22px);
-    gap: 18px;
+    grid-template-columns: repeat(2, 33px);
+    grid-template-rows: repeat(2, 33px);
+    gap: 27px;
   }
   .geo-dots-2x2 > span {
     display: block;
-    width: 22px;
-    height: 22px;
+    width: 33px;
+    height: 33px;
     background: currentColor;
     border-radius: 50%;
   }
   @media (max-width: 640px) {
     .geo-dots-2x2 {
-      grid-template-columns: repeat(2, 14px);
-      grid-template-rows: repeat(2, 14px);
-      gap: 11px;
+      grid-template-columns: repeat(2, 21px);
+      grid-template-rows: repeat(2, 21px);
+      gap: 16px;
     }
-    .geo-dots-2x2 > span { width: 14px; height: 14px; }
+    .geo-dots-2x2 > span { width: 21px; height: 21px; }
   }
+  .section-light .geo-decor { color: #000000; opacity: 0.06; }
 
   /* ── Hero background ── */
   .hero-bg {
@@ -298,7 +301,6 @@
     color: #1a1a1a;
   }
   .section-light .glass-panel { color: #ffffff; }
-  .section-light .geo-decor { color: #000000; opacity: 0.08; }
 
   /* ── Diagonal transitions between dark and light areas ── */
   .fade-to-light,
@@ -321,8 +323,12 @@
   }
 
   /* ── Staircase cards layout ── */
+  .staircase-item { width: 85%; }
+  .staircase-item:nth-child(1) { margin-left: 0; }
+  .staircase-item:nth-child(2) { margin-left: 7%; }
+  .staircase-item:nth-child(3) { margin-left: 14%; }
   @media (min-width: 768px) {
-    .staircase-item { width: 72%; min-height: 200px; display: flex; flex-direction: column; justify-content: center; }
+    .staircase-item { width: 68%; min-height: 200px; display: flex; flex-direction: column; justify-content: center; }
     .staircase-item:nth-child(1) { margin-left: 0; }
     .staircase-item:nth-child(2) { margin-left: 14%; }
     .staircase-item:nth-child(3) { margin-left: 28%; }
@@ -347,10 +353,10 @@
       data-animate
     />
     <h1 class="font-headline text-3xl sm:text-4xl md:text-6xl font-semibold leading-tight tracking-tight" data-animate style="--delay:80ms">
-      Dobre seu volume de cirurgias com <span class="gold-text">3 simples ajustes</span>
+      Dobre seu volume de cirurgias com <span class="gold-text">3 ajustes certeiros!</span>
     </h1>
-    <h2 class="font-body text-lg sm:text-xl md:text-2xl text-on-surface-variant font-normal max-w-3xl" data-animate style="--delay:160ms">
-      sem depender de atender mais pacientes e sem investir em marketing, equipe ou consultório
+    <h2 class="font-body text-lg sm:text-xl md:text-2xl text-on-surface-variant font-normal max-w-3xl text-balance" data-animate style="--delay:160ms">
+      Sem depender de atender mais pacientes, sem investir em marketing, equipe ou consultório
     </h2>
     <div class="pt-4 md:pt-8 w-full flex flex-col items-center gap-6 md:gap-7" data-animate style="--delay:240ms">
       <a href="#inscricao" class="btn-gold px-8 md:px-10 py-4 md:py-5 rounded-full text-base sm:text-lg md:text-xl inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-1 w-full sm:w-auto mx-auto">
@@ -377,7 +383,7 @@
 
   <div class="max-w-3xl mx-auto text-center space-y-6 md:space-y-8 glass-panel hover-scale p-6 sm:p-10 md:p-12 relative z-10" data-animate>
     <h2 class="font-headline text-2xl sm:text-3xl md:text-5xl font-semibold gold-text">O Código do Consultório Cirúrgico</h2>
-    <div class="font-body space-y-3 md:space-y-4 text-base sm:text-lg md:text-xl text-on-surface-variant">
+    <div class="font-body space-y-3 md:space-y-4 text-base sm:text-lg md:text-xl text-on-surface">
       <p class="flex items-center justify-center gap-3">
         <span class="material-symbols-outlined gold-text">calendar_month</span>
         Domingo 17 de maio, das 08h00 às 12h00
@@ -391,14 +397,8 @@
         De Cirurgião para Cirurgião
       </p>
     </div>
+    <p class="font-body text-xs sm:text-sm text-on-surface pt-2">*Não atendemos às necessidades de veterinários ou dentistas.</p>
   </div>
-</section>
-
-<!-- Dynamic Banner -->
-<section class="py-8 md:py-12 bg-primary text-black text-center px-4 sm:px-6">
-  <h2 class="font-headline text-lg sm:text-xl md:text-2xl font-semibold uppercase tracking-wider">
-    Não atendemos às necessidades de veterinários ou dentistas.
-  </h2>
 </section>
 
 <!-- The Problem -->
@@ -411,15 +411,15 @@
   <div class="geo-decor geo-square" style="top: 10%; right: 4%; width: 150px; height: 150px;" aria-hidden="true"></div>
   <div class="geo-decor geo-square" style="top: 16%; right: 7%; width: 150px; height: 150px;" aria-hidden="true"></div>
 
-  <div class="max-w-4xl mx-auto space-y-10 md:space-y-12 relative z-10">
-    <p class="font-headline text-xl sm:text-2xl md:text-3xl font-semibold leading-relaxed" data-animate>
+  <div class="max-w-4xl mx-auto space-y-14 md:space-y-20 relative z-10">
+    <p class="font-headline text-xl sm:text-2xl md:text-3xl font-normal leading-relaxed text-balance gold-text" data-animate>
       Enquanto você opera, o paciente está dormindo! Ele não sabe avaliar sua habilidade como médico cirurgião.
     </p>
-    <div class="font-body text-lg sm:text-xl text-on-surface-variant max-w-3xl mx-auto space-y-4" data-animate style="--delay:80ms">
+    <div class="font-body text-lg sm:text-xl text-on-surface-variant max-w-3xl mx-auto space-y-8 md:space-y-10" data-animate style="--delay:80ms">
       <p>Competência técnica é fundamental, mas não é suficiente para garantir que seu consultório "cresça naturalmente".</p>
-      <p class="font-headline font-semibold text-white text-xl sm:text-2xl md:text-3xl">Pacientes escolhem cirurgiões que:</p>
+      <p class="font-body font-normal text-white">Pacientes escolhem cirurgiões que:</p>
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 pt-6 md:pt-12">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 pt-2 md:pt-4">
       <div class="flex flex-col items-center text-center space-y-4" data-animate style="--delay:0ms">
         <div class="icon-circle w-16 h-16 rounded-full border border-primary flex items-center justify-center">
           <span class="material-symbols-outlined text-primary text-3xl">handshake</span>
@@ -457,12 +457,12 @@
   </div>
 
   <div class="max-w-4xl mx-auto text-center space-y-12 md:space-y-16 relative z-10">
-    <div class="space-y-5 md:space-y-6" data-animate>
-      <p class="font-body text-lg sm:text-xl md:text-2xl text-on-surface-variant">Ter maior volume de cirurgias não é sobre convencer o paciente entre operar ou não operar.</p>
-      <p class="font-headline text-xl sm:text-2xl md:text-3xl font-semibold gold-text">É sobre convencer o paciente a operar com você e não com outro cirurgião!</p>
-      <p class="font-body text-base sm:text-lg text-on-surface-variant">É por isso que no Código do Consultório Cirúrgico, te ensinaremos os três ajustes que te permitirão dobrar seu volume de cirurgias eletivas:</p>
+    <div class="space-y-5 md:space-y-6 max-w-3xl mx-auto" data-animate>
+      <p class="font-body text-lg sm:text-xl md:text-2xl text-on-surface-variant text-balance">Ter maior volume de cirurgias não é sobre convencer o paciente entre operar ou não operar.</p>
+      <p class="font-headline text-xl sm:text-2xl md:text-3xl font-semibold gold-text text-balance">É sobre convencer o paciente a operar com você e não com outro cirurgião!</p>
+      <p class="font-body text-base sm:text-lg text-on-surface-variant text-balance">É por isso que no Código do Consultório Cirúrgico, te ensinaremos os três ajustes que te permitirão dobrar seu volume de cirurgias eletivas:</p>
     </div>
-    <div class="space-y-4 md:space-y-6 text-left w-full overflow-hidden">
+    <div class="space-y-4 md:space-y-6 text-left w-full px-2">
       <div class="glass-panel hover-scale p-6 md:p-10 staircase-item" data-animate style="--delay:0ms">
         <h3 class="font-headline font-semibold text-xl sm:text-2xl md:text-3xl mb-3 gold-text flex items-center gap-4">
           <span class="material-symbols-outlined text-3xl">verified_user</span> Confiança
@@ -602,8 +602,8 @@
   </div>
 
   <div class="relative z-10 max-w-4xl mx-auto text-center space-y-12 md:space-y-16">
-    <p class="font-headline text-xl sm:text-2xl font-semibold leading-relaxed" data-animate>
-      Se o conhecimento que você adquirir aqui te auxiliar em fechar uma única cirurgia, você terá quitado inúmeras vezes o valor do seu investimento:
+    <p class="font-body text-lg sm:text-xl md:text-2xl font-normal leading-relaxed text-balance" data-animate>
+      Se o conhecimento que você adquirir aqui te auxiliar a fechar uma única cirurgia, você terá quitado inúmeras vezes o valor do seu investimento:
     </p>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-3xl mx-auto">
       <!-- Standard -->
@@ -623,7 +623,7 @@
         <div class="mb-6 md:mb-8">
           <span class="text-3xl sm:text-4xl font-headline font-semibold gold-text">R$ 597</span>
         </div>
-        <p class="font-body text-on-surface-variant text-sm text-center">Dá acesso à gravação do conteúdo por 7 dias.</p>
+        <p class="font-body text-on-surface-variant text-sm text-center text-balance">Acesso à gravação do conteúdo por 7 dias.</p>
       </div>
     </div>
     <div data-animate style="--delay:80ms">
@@ -648,7 +648,7 @@
     <span class="material-symbols-outlined text-5xl gold-text mb-4 md:mb-6">verified</span>
     <h3 class="font-headline text-xl sm:text-2xl md:text-3xl font-semibold mb-4">Garantia Incondicional</h3>
     <p class="font-body text-base md:text-lg text-on-surface-variant">
-      Se você comprovar que participou da imersão ao vivo conosco e achar que o conteúdo <strong class="font-headline font-semibold text-white">NÃO VALEU</strong> o seu investimento, devolvemos seu investimento de forma integral em até 7 dias depois da data da Masterclass!
+      Se você comprovar que participou da imersão ao vivo conosco e achar que o conteúdo <strong class="font-headline font-bold uppercase text-white">Não Valeu o Seu Investimento</strong>, devolvemos seu investimento de forma integral em até <strong class="font-headline font-bold uppercase text-white">7 Dias</strong> depois da data da Masterclass!
     </p>
   </div>
 </section>
@@ -670,7 +670,7 @@
   <div class="geo-decor geo-square" style="bottom: 100px; left: 4%; width: 180px; height: 180px;" aria-hidden="true"></div>
 
   <div class="max-w-6xl mx-auto relative z-10">
-    <h2 class="font-headline text-2xl sm:text-3xl md:text-5xl font-semibold mb-12 md:mb-16" data-animate>
+    <h2 class="font-headline text-2xl sm:text-3xl md:text-5xl font-semibold mb-12 md:mb-16 text-balance max-w-3xl mx-auto" data-animate>
       Quem vai te ensinar o <span class="gold-text">Código do Consultório Cirúrgico?</span>
     </h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12">
