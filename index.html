@@ -12,7 +12,7 @@
 <link rel="icon" type="image/png" href="logos/web/logo-monograma.png" />
 
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
 
 <script id="tailwind-config">
@@ -29,8 +29,8 @@
           "on-surface-variant": "#a3a3a3",
         },
         fontFamily: {
-          headline: ["Josefin Sans", "sans-serif"],
-          body: ["Manrope", "sans-serif"],
+          headline: ['"Playfair Display"', "Georgia", "serif"],
+          body: ['"Helvetica Neue"', "Helvetica", "Arial", "sans-serif"],
         },
       },
     },
@@ -39,12 +39,17 @@
 
 <style>
   body {
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 400;
     background-color: #000000;
     color: #ffffff;
     -webkit-font-smoothing: antialiased;
   }
-  h1, h2, h3, h4, h5, h6, .font-headline { font-family: 'Josefin Sans', sans-serif; }
+  h1, h2, h3, h4, h5, h6, .font-headline {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 600;
+  }
+  .font-body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
 
   .gold-text { color: #e5a81b; }
 
@@ -68,6 +73,32 @@
   @keyframes gold-pulse {
     0%, 100% { box-shadow: 0 4px 14px rgba(229, 168, 27, 0.3); }
     50%       { box-shadow: 0 4px 30px rgba(229, 168, 27, 0.6), 0 0 48px rgba(229, 168, 27, 0.15); }
+  }
+
+  /* ── Scroll indicator ── */
+  .scroll-indicator {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    color: rgba(255,255,255,0.55);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color .3s ease;
+  }
+  .scroll-indicator:hover { color: rgba(255,255,255,0.85); }
+  .scroll-indicator .arrow {
+    font-size: 34px;
+    line-height: 1;
+    color: #e5a81b;
+    animation: scroll-bounce 2.2s ease-in-out infinite;
+  }
+  @keyframes scroll-bounce {
+    0%, 100% { transform: translateY(0);   opacity: 0.45; }
+    50%      { transform: translateY(8px); opacity: 1; }
   }
 
   /* ── Separator ── */
@@ -129,6 +160,39 @@
   [data-animate].is-visible {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  /* ── Geometric decorations (white 10% opacity over dark areas) ── */
+  .geo-decor {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0.10;
+    color: #ffffff;
+    z-index: 0;
+  }
+  .geo-square {
+    border: 1.5px solid currentColor;
+  }
+  .geo-dots-2x2 {
+    display: grid;
+    grid-template-columns: repeat(2, 22px);
+    grid-template-rows: repeat(2, 22px);
+    gap: 18px;
+  }
+  .geo-dots-2x2 > span {
+    display: block;
+    width: 22px;
+    height: 22px;
+    background: currentColor;
+    border-radius: 50%;
+  }
+  @media (max-width: 640px) {
+    .geo-dots-2x2 {
+      grid-template-columns: repeat(2, 14px);
+      grid-template-rows: repeat(2, 14px);
+      gap: 11px;
+    }
+    .geo-dots-2x2 > span { width: 14px; height: 14px; }
   }
 
   /* ── Hero background ── */
@@ -227,6 +291,42 @@
   .hover-scale:hover {
     transform: scale(1.025);
   }
+
+  /* ── Light section (pricing + guarantee) ── */
+  .section-light {
+    background-color: #ffffff;
+    color: #1a1a1a;
+  }
+  .section-light .glass-panel { color: #ffffff; }
+  .section-light .geo-decor { color: #000000; opacity: 0.08; }
+
+  /* ── Diagonal transitions between dark and light areas ── */
+  .fade-to-light,
+  .fade-to-dark {
+    width: 100%;
+    pointer-events: none;
+    height: 72px;
+  }
+  .fade-to-light {
+    background: #ffffff;
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  }
+  .fade-to-dark {
+    background: #ffffff;
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+  }
+  @media (min-width: 768px) {
+    .fade-to-light,
+    .fade-to-dark { height: 110px; }
+  }
+
+  /* ── Staircase cards layout ── */
+  @media (min-width: 768px) {
+    .staircase-item { width: 72%; min-height: 200px; display: flex; flex-direction: column; justify-content: center; }
+    .staircase-item:nth-child(1) { margin-left: 0; }
+    .staircase-item:nth-child(2) { margin-left: 14%; }
+    .staircase-item:nth-child(3) { margin-left: 28%; }
+  }
 </style>
 </head>
 <body class="antialiased overflow-x-hidden selection:bg-primary selection:text-black">
@@ -246,15 +346,20 @@
       fetchpriority="high"
       data-animate
     />
-    <h1 class="font-headline text-3xl sm:text-4xl md:text-6xl font-bold leading-tight tracking-tight" data-animate style="--delay:80ms">
+    <h1 class="font-headline text-3xl sm:text-4xl md:text-6xl font-semibold leading-tight tracking-tight" data-animate style="--delay:80ms">
       Dobre seu volume de cirurgias com <span class="gold-text">3 simples ajustes</span>
     </h1>
-    <h2 class="text-lg sm:text-xl md:text-2xl text-on-surface-variant font-body font-light max-w-3xl" data-animate style="--delay:160ms">
+    <h2 class="font-body text-lg sm:text-xl md:text-2xl text-on-surface-variant font-normal max-w-3xl" data-animate style="--delay:160ms">
       sem depender de atender mais pacientes e sem investir em marketing, equipe ou consultório
     </h2>
-    <div class="pt-4 md:pt-8 w-full" data-animate style="--delay:240ms">
-      <a href="#inscricao" class="btn-gold px-8 md:px-10 py-4 md:py-5 rounded-full font-bold text-base sm:text-lg md:text-xl flex items-center justify-center gap-3 w-full sm:w-auto sm:inline-flex mx-auto">
-        Quero participar do Código do Consultório Cirúrgico!
+    <div class="pt-4 md:pt-8 w-full flex flex-col items-center gap-6 md:gap-7" data-animate style="--delay:240ms">
+      <a href="#inscricao" class="btn-gold px-8 md:px-10 py-4 md:py-5 rounded-full text-base sm:text-lg md:text-xl inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-1 w-full sm:w-auto mx-auto">
+        <span class="font-body font-normal">Quero participar do</span>
+        <span class="font-headline font-bold">Código do Consultório Cirúrgico!</span>
+      </a>
+      <a href="#codigo-detalhes" class="scroll-indicator" aria-label="Role a página para saber mais">
+        <span>Role para saber mais</span>
+        <span class="material-symbols-outlined arrow" aria-hidden="true">keyboard_arrow_down</span>
       </a>
     </div>
   </div>
@@ -263,10 +368,16 @@
 <div class="gradient-separator"></div>
 
 <!-- Event Details -->
-<section class="py-16 md:py-24 px-4 sm:px-6 relative z-10">
-  <div class="max-w-3xl mx-auto text-center space-y-6 md:space-y-8 glass-panel hover-scale p-6 sm:p-10 md:p-12" data-animate>
-    <h2 class="font-headline text-2xl sm:text-3xl md:text-5xl font-bold gold-text">O Código do Consultório Cirúrgico</h2>
-    <div class="space-y-3 md:space-y-4 text-base sm:text-lg md:text-xl text-on-surface-variant">
+<section id="codigo-detalhes" class="py-16 md:py-24 px-4 sm:px-6 relative z-10 overflow-hidden">
+  <!-- Geo decorations -->
+  <div class="geo-decor geo-dots-2x2" style="top: 32px; right: 24px;" aria-hidden="true">
+    <span></span><span></span><span></span><span></span>
+  </div>
+  <div class="geo-decor geo-square" style="bottom: 32px; left: 20px; width: 170px; height: 170px;" aria-hidden="true"></div>
+
+  <div class="max-w-3xl mx-auto text-center space-y-6 md:space-y-8 glass-panel hover-scale p-6 sm:p-10 md:p-12 relative z-10" data-animate>
+    <h2 class="font-headline text-2xl sm:text-3xl md:text-5xl font-semibold gold-text">O Código do Consultório Cirúrgico</h2>
+    <div class="font-body space-y-3 md:space-y-4 text-base sm:text-lg md:text-xl text-on-surface-variant">
       <p class="flex items-center justify-center gap-3">
         <span class="material-symbols-outlined gold-text">calendar_month</span>
         Domingo 17 de maio, das 08h00 às 12h00
@@ -285,7 +396,7 @@
 
 <!-- Dynamic Banner -->
 <section class="py-8 md:py-12 bg-primary text-black text-center px-4 sm:px-6">
-  <h2 class="font-headline text-lg sm:text-xl md:text-2xl font-bold uppercase tracking-wider">
+  <h2 class="font-headline text-lg sm:text-xl md:text-2xl font-semibold uppercase tracking-wider">
     Não atendemos às necessidades de veterinários ou dentistas.
   </h2>
 </section>
@@ -296,32 +407,36 @@
   <img src="Fotos-fundo/fundo-certo.png" alt="" aria-hidden="true"
        class="absolute left-0 top-1/2 -translate-y-1/2 h-[80%] w-auto object-contain pointer-events-none select-none z-0"
        style="opacity:0.07;" loading="lazy" />
+  <!-- Geo decorations -->
+  <div class="geo-decor geo-square" style="top: 10%; right: 4%; width: 150px; height: 150px;" aria-hidden="true"></div>
+  <div class="geo-decor geo-square" style="top: 16%; right: 7%; width: 150px; height: 150px;" aria-hidden="true"></div>
+
   <div class="max-w-4xl mx-auto space-y-10 md:space-y-12 relative z-10">
-    <p class="text-xl sm:text-2xl md:text-3xl font-headline leading-relaxed" data-animate>
+    <p class="font-headline text-xl sm:text-2xl md:text-3xl font-semibold leading-relaxed" data-animate>
       Enquanto você opera, o paciente está dormindo! Ele não sabe avaliar sua habilidade como médico cirurgião.
     </p>
-    <div class="text-lg sm:text-xl text-on-surface-variant max-w-3xl mx-auto space-y-4" data-animate style="--delay:80ms">
+    <div class="font-body text-lg sm:text-xl text-on-surface-variant max-w-3xl mx-auto space-y-4" data-animate style="--delay:80ms">
       <p>Competência técnica é fundamental, mas não é suficiente para garantir que seu consultório "cresça naturalmente".</p>
-      <p>Pacientes escolhem cirurgiões que:</p>
+      <p class="font-headline font-semibold text-white text-xl sm:text-2xl md:text-3xl">Pacientes escolhem cirurgiões que:</p>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 pt-6 md:pt-12">
       <div class="flex flex-col items-center text-center space-y-4" data-animate style="--delay:0ms">
         <div class="icon-circle w-16 h-16 rounded-full border border-primary flex items-center justify-center">
           <span class="material-symbols-outlined text-primary text-3xl">handshake</span>
         </div>
-        <p class="text-base sm:text-lg">o acolhem com confiança e clareza</p>
+        <p class="font-body text-base sm:text-lg">o acolhem com confiança e clareza</p>
       </div>
       <div class="flex flex-col items-center text-center space-y-4" data-animate style="--delay:100ms">
         <div class="icon-circle w-16 h-16 rounded-full border border-primary flex items-center justify-center">
           <span class="material-symbols-outlined text-primary text-3xl">request_quote</span>
         </div>
-        <p class="text-base sm:text-lg">não hesitam ao passar o orçamento</p>
+        <p class="font-body text-base sm:text-lg">não hesitam ao passar o orçamento</p>
       </div>
       <div class="flex flex-col items-center text-center space-y-4" data-animate style="--delay:200ms">
         <div class="icon-circle w-16 h-16 rounded-full border border-primary flex items-center justify-center">
           <span class="material-symbols-outlined text-primary text-3xl">monitor_heart</span>
         </div>
-        <p class="text-base sm:text-lg">o acompanham adequadamente no perioperatório</p>
+        <p class="font-body text-base sm:text-lg">o acompanham adequadamente no perioperatório</p>
       </div>
     </div>
   </div>
@@ -330,48 +445,65 @@
 <div class="gradient-separator"></div>
 
 <!-- Method -->
-<section class="py-20 md:py-32 px-4 sm:px-6 relative z-10">
-  <div class="max-w-4xl mx-auto text-center space-y-12 md:space-y-16">
+<section class="py-20 md:py-32 px-4 sm:px-6 relative z-10 overflow-hidden">
+  <!-- Geo decorations -->
+  <div class="geo-decor geo-square" style="top: 80px; left: 5%; width: 280px; height: 280px;" aria-hidden="true"></div>
+  <div class="geo-decor geo-square" style="top: 200px; left: 9%; width: 280px; height: 280px;" aria-hidden="true"></div>
+  <div class="geo-decor geo-dots-2x2" style="top: 140px; right: 6%;" aria-hidden="true">
+    <span></span><span></span><span></span><span></span>
+  </div>
+  <div class="geo-decor geo-dots-2x2" style="bottom: 120px; left: 6%;" aria-hidden="true">
+    <span></span><span></span><span></span><span></span>
+  </div>
+
+  <div class="max-w-4xl mx-auto text-center space-y-12 md:space-y-16 relative z-10">
     <div class="space-y-5 md:space-y-6" data-animate>
-      <p class="text-lg sm:text-xl md:text-2xl text-on-surface-variant">Ter maior volume de cirurgias não é sobre convencer o paciente entre operar ou não operar.</p>
-      <p class="text-xl sm:text-2xl md:text-3xl font-headline font-bold gold-text">É sobre convencer o paciente a operar com você e não com outro cirurgião!</p>
-      <p class="text-base sm:text-lg text-on-surface-variant">É por isso que no Código do Consultório Cirúrgico, te ensinaremos os três ajustes que te permitirão dobrar seu volume de cirurgias eletivas:</p>
+      <p class="font-body text-lg sm:text-xl md:text-2xl text-on-surface-variant">Ter maior volume de cirurgias não é sobre convencer o paciente entre operar ou não operar.</p>
+      <p class="font-headline text-xl sm:text-2xl md:text-3xl font-semibold gold-text">É sobre convencer o paciente a operar com você e não com outro cirurgião!</p>
+      <p class="font-body text-base sm:text-lg text-on-surface-variant">É por isso que no Código do Consultório Cirúrgico, te ensinaremos os três ajustes que te permitirão dobrar seu volume de cirurgias eletivas:</p>
     </div>
-    <div class="space-y-6 md:space-y-12 text-left max-w-3xl mx-auto">
-      <div class="glass-panel hover-scale p-6 md:p-8" data-animate style="--delay:0ms">
-        <h3 class="font-headline font-bold text-xl sm:text-2xl md:text-3xl mb-3 gold-text flex items-center gap-4">
+    <div class="space-y-4 md:space-y-6 text-left w-full overflow-hidden">
+      <div class="glass-panel hover-scale p-6 md:p-10 staircase-item" data-animate style="--delay:0ms">
+        <h3 class="font-headline font-semibold text-xl sm:text-2xl md:text-3xl mb-3 gold-text flex items-center gap-4">
           <span class="material-symbols-outlined text-3xl">verified_user</span> Confiança
         </h3>
-        <p class="text-base md:text-lg text-on-surface-variant">Como fazer o paciente se sentir verdadeiramente acolhido em todas as etapas do atendimento. Aqui você vira o dono do paciente.</p>
+        <p class="font-body text-base md:text-lg text-on-surface-variant">Como fazer o paciente se sentir verdadeiramente acolhido em todas as etapas do atendimento. Aqui você vira o dono do paciente.</p>
       </div>
-      <div class="glass-panel hover-scale p-6 md:p-8" data-animate style="--delay:80ms">
-        <h3 class="font-headline font-bold text-xl sm:text-2xl md:text-3xl mb-3 gold-text flex items-center gap-4">
+      <div class="glass-panel hover-scale p-6 md:p-10 staircase-item" data-animate style="--delay:80ms">
+        <h3 class="font-headline font-semibold text-xl sm:text-2xl md:text-3xl mb-3 gold-text flex items-center gap-4">
           <span class="material-symbols-outlined text-3xl">payments</span> Orçamento
         </h3>
-        <p class="text-base md:text-lg text-on-surface-variant">Vamos te mostrar um modelo validado de preparação e apresentação de orçamento de cirurgias.</p>
+        <p class="font-body text-base md:text-lg text-on-surface-variant">Vamos te mostrar um modelo validado de preparação e apresentação de orçamento de cirurgias.</p>
       </div>
-      <div class="glass-panel hover-scale p-6 md:p-8" data-animate style="--delay:160ms">
-        <h3 class="font-headline font-bold text-xl sm:text-2xl md:text-3xl mb-3 gold-text flex items-center gap-4">
+      <div class="glass-panel hover-scale p-6 md:p-10 staircase-item" data-animate style="--delay:160ms">
+        <h3 class="font-headline font-semibold text-xl sm:text-2xl md:text-3xl mb-3 gold-text flex items-center gap-4">
           <span class="material-symbols-outlined text-3xl">support_agent</span> Acompanhamento
         </h3>
-        <p class="text-base md:text-lg text-on-surface-variant">Como acompanhar o paciente durante sua tomada de decisão.</p>
+        <p class="font-body text-base md:text-lg text-on-surface-variant">Como acompanhar o paciente durante sua tomada de decisão.</p>
       </div>
     </div>
     <div data-animate style="--delay:80ms">
-      <a href="#inscricao" class="btn-gold px-8 md:px-10 py-4 md:py-5 rounded-full font-bold text-base sm:text-lg md:text-xl inline-flex items-center justify-center gap-3 w-full sm:w-auto mx-auto mt-8 md:mt-12">
-        Quero participar do Código do Consultório Cirúrgico!
+      <a href="#inscricao" class="btn-gold px-8 md:px-10 py-4 md:py-5 rounded-full text-base sm:text-lg md:text-xl inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-1 w-full sm:w-auto mx-auto mt-8 md:mt-12">
+        <span class="font-body font-normal">Quero participar do</span>
+        <span class="font-headline font-bold">Código do Consultório Cirúrgico!</span>
       </a>
     </div>
   </div>
 </section>
 
 <!-- Target Audience -->
-<section class="py-20 md:py-32 px-4 sm:px-6 relative z-10 text-center">
+<section class="py-20 md:py-32 px-4 sm:px-6 relative z-10 text-center overflow-hidden">
   <div class="target-bg"></div>
   <div class="target-bg-overlay"></div>
+  <!-- Geo decorations (subtle over dark photo edges) -->
+  <div class="geo-decor geo-dots-2x2" style="top: 60px; left: 6%; z-index: 2;" aria-hidden="true">
+    <span></span><span></span><span></span><span></span>
+  </div>
+  <div class="geo-decor geo-square" style="bottom: 80px; right: 5%; width: 160px; height: 160px; z-index: 2;" aria-hidden="true"></div>
+
   <div class="max-w-4xl mx-auto space-y-10 md:space-y-12 relative z-10">
-    <h2 class="font-headline text-2xl sm:text-3xl md:text-5xl font-bold" data-animate>Este evento é para você se você é <span class="gold-text">cirurgião e...</span></h2>
-    <ul class="space-y-5 md:space-y-6 text-base sm:text-lg text-on-surface-variant max-w-2xl mx-auto text-left">
+    <h2 class="font-headline text-2xl sm:text-3xl md:text-5xl font-semibold" data-animate>Este evento é para você se você é <span class="gold-text">cirurgião e...</span></h2>
+    <ul class="font-body space-y-5 md:space-y-6 text-base sm:text-lg text-on-surface-variant max-w-2xl mx-auto text-left">
       <li class="flex items-start gap-4" data-animate style="--delay:0ms">
         <span class="material-symbols-outlined text-primary shrink-0 mt-1">check</span>
         acreditou erroneamente que, tendo capacidade técnica, o consultório "cresce naturalmente"
@@ -399,16 +531,23 @@
 <div class="gradient-separator"></div>
 
 <!-- Before & After -->
-<section class="py-16 md:py-24 px-4 sm:px-6 relative z-10">
-  <div class="max-w-5xl mx-auto">
+<section class="py-16 md:py-24 px-4 sm:px-6 relative z-10 overflow-hidden">
+  <!-- Geo decorations -->
+  <div class="geo-decor geo-dots-2x2" style="bottom: 48px; right: 5%;" aria-hidden="true">
+    <span></span><span></span><span></span><span></span>
+  </div>
+  <div class="geo-decor geo-square" style="top: 40px; left: 4%; width: 140px; height: 140px;" aria-hidden="true"></div>
+  <div class="geo-decor geo-square" style="top: 80px; left: 7%; width: 140px; height: 140px;" aria-hidden="true"></div>
+
+  <div class="max-w-5xl mx-auto relative z-10">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
       <!-- Como é hoje -->
       <div class="glass-panel hover-scale p-6 md:p-10 border-red-500/20" style="--delay:0ms; filter: brightness(0.65);" data-animate>
         <div class="text-center mb-6 md:mb-8">
           <span class="material-symbols-outlined text-5xl text-red-500/80 mb-2">cancel</span>
-          <h3 class="font-headline text-xl sm:text-2xl md:text-3xl font-bold text-on-surface">Como é hoje</h3>
+          <h3 class="font-headline text-xl sm:text-2xl md:text-3xl font-semibold text-on-surface">Como é hoje</h3>
         </div>
-        <ul class="space-y-6 md:space-y-8">
+        <ul class="font-body space-y-6 md:space-y-8">
           <li class="flex items-start gap-4 text-on-surface-variant text-base md:text-lg">
             <span class="material-symbols-outlined text-red-500/80 shrink-0 mt-1">close</span>
             Fica esperando o consultório crescer naturalmente com o tempo por ser um bom cirurgião tecnicamente.
@@ -427,9 +566,9 @@
       <div class="glass-panel hover-scale p-6 md:p-10 border-primary/30" data-animate style="--delay:120ms">
         <div class="text-center mb-6 md:mb-8">
           <span class="material-symbols-outlined text-5xl text-green-500 mb-2">check_circle</span>
-          <h3 class="font-headline text-xl sm:text-2xl md:text-3xl font-bold gold-text">Com o Código</h3>
+          <h3 class="font-headline text-xl sm:text-2xl md:text-3xl font-semibold gold-text">Com o Código</h3>
         </div>
-        <ul class="space-y-6 md:space-y-8">
+        <ul class="font-body space-y-6 md:space-y-8">
           <li class="flex items-start gap-4 text-on-surface-variant text-base md:text-lg">
             <span class="material-symbols-outlined text-green-500 shrink-0 mt-1">check</span>
             Tem uma estrutura estratégica que faz o consultório crescer de verdade.
@@ -448,51 +587,73 @@
   </div>
 </section>
 
+<div class="fade-to-light" aria-hidden="true"></div>
+
 <!-- Pricing -->
-<section id="inscricao" class="py-20 md:py-32 px-4 sm:px-6 relative z-10">
+<section id="inscricao" class="py-20 md:py-32 px-4 sm:px-6 relative z-10 overflow-hidden section-light">
+  <!-- Geo decorations -->
+  <div class="geo-decor geo-square" style="top: 60px; left: 4%; width: 240px; height: 240px;" aria-hidden="true"></div>
+  <div class="geo-decor geo-square" style="top: 160px; left: 8%; width: 240px; height: 240px;" aria-hidden="true"></div>
+  <div class="geo-decor geo-dots-2x2" style="bottom: 80px; right: 5%;" aria-hidden="true">
+    <span></span><span></span><span></span><span></span>
+  </div>
+  <div class="geo-decor geo-dots-2x2" style="top: 80px; right: 7%;" aria-hidden="true">
+    <span></span><span></span><span></span><span></span>
+  </div>
+
   <div class="relative z-10 max-w-4xl mx-auto text-center space-y-12 md:space-y-16">
-    <p class="text-xl sm:text-2xl font-headline leading-relaxed" data-animate>
+    <p class="font-headline text-xl sm:text-2xl font-semibold leading-relaxed" data-animate>
       Se o conhecimento que você adquirir aqui te auxiliar em fechar uma única cirurgia, você terá quitado inúmeras vezes o valor do seu investimento:
     </p>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-3xl mx-auto">
       <!-- Standard -->
       <div class="glass-panel hover-scale p-8 md:p-10 flex flex-col items-center justify-center" data-animate style="--delay:0ms">
-        <h3 class="font-headline text-xl sm:text-2xl md:text-3xl font-bold mb-4">Ingresso Comum</h3>
+        <h3 class="font-headline text-xl sm:text-2xl md:text-3xl font-semibold mb-4">Ingresso Comum</h3>
         <div class="mb-6 md:mb-8">
-          <span class="text-3xl sm:text-4xl font-headline font-bold gold-text">R$ 297</span>
+          <span class="text-3xl sm:text-4xl font-headline font-semibold gold-text">R$ 297</span>
         </div>
-        <p class="text-on-surface-variant text-sm text-center">Acesso ao vivo ao conteúdo masterclass.</p>
+        <p class="font-body text-on-surface-variant text-sm text-center">Acesso ao vivo ao conteúdo masterclass.</p>
       </div>
       <!-- VIP -->
       <div class="glass-panel hover-scale p-8 md:p-10 flex flex-col items-center justify-center border-primary/50 relative overflow-hidden" data-animate style="--delay:120ms">
-        <div class="absolute top-0 right-0 bg-primary text-black text-xs font-bold px-4 py-1 rounded-bl-lg">
+        <div class="absolute top-0 right-0 bg-primary text-black text-xs font-body font-normal px-4 py-1 rounded-bl-lg tracking-wider">
           RECOMENDADO
         </div>
-        <h3 class="font-headline text-xl sm:text-2xl md:text-3xl font-bold mb-4 gold-text">Ingresso VIP</h3>
+        <h3 class="font-headline text-xl sm:text-2xl md:text-3xl font-semibold mb-4 gold-text">Ingresso VIP</h3>
         <div class="mb-6 md:mb-8">
-          <span class="text-3xl sm:text-4xl font-headline font-bold gold-text">R$ 597</span>
+          <span class="text-3xl sm:text-4xl font-headline font-semibold gold-text">R$ 597</span>
         </div>
-        <p class="text-on-surface-variant text-sm text-center">Dá acesso à gravação do conteúdo por 7 dias.</p>
+        <p class="font-body text-on-surface-variant text-sm text-center">Dá acesso à gravação do conteúdo por 7 dias.</p>
       </div>
     </div>
     <div data-animate style="--delay:80ms">
-      <a href="#inscricao" class="btn-gold px-10 md:px-12 py-5 md:py-6 rounded-full font-bold text-lg md:text-xl inline-flex items-center justify-center mx-auto w-full sm:w-auto">
-        Quero participar do Código do Consultório Cirúrgico!
+      <a href="#inscricao" class="btn-gold px-10 md:px-12 py-5 md:py-6 rounded-full text-lg md:text-xl inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-1 mx-auto w-full sm:w-auto">
+        <span class="font-body font-normal">Quero participar do</span>
+        <span class="font-headline font-bold">Código do Consultório Cirúrgico!</span>
       </a>
     </div>
   </div>
 </section>
 
 <!-- Guarantee -->
-<section class="py-16 md:py-24 px-4 sm:px-6 relative z-10 text-center">
-  <div class="max-w-3xl mx-auto glass-panel hover-scale p-6 sm:p-8 md:p-10 border-primary/20" data-animate>
+<section class="py-16 md:py-24 px-4 sm:px-6 relative z-10 text-center overflow-hidden section-light">
+  <!-- Geo decorations -->
+  <div class="geo-decor geo-square" style="top: 30px; left: 5%; width: 150px; height: 150px;" aria-hidden="true"></div>
+  <div class="geo-decor geo-square" style="bottom: 40px; right: 5%; width: 160px; height: 160px;" aria-hidden="true"></div>
+  <div class="geo-decor geo-dots-2x2" style="bottom: 50px; left: 6%;" aria-hidden="true">
+    <span></span><span></span><span></span><span></span>
+  </div>
+
+  <div class="max-w-3xl mx-auto glass-panel hover-scale p-6 sm:p-8 md:p-10 border-primary/20 relative z-10" data-animate>
     <span class="material-symbols-outlined text-5xl gold-text mb-4 md:mb-6">verified</span>
-    <h3 class="font-headline text-xl sm:text-2xl md:text-3xl font-bold mb-4">Garantia Incondicional</h3>
-    <p class="text-base md:text-lg text-on-surface-variant">
-      Se você comprovar que participou da imersão ao vivo conosco e achar que o conteúdo <strong class="text-white font-bold">NÃO VALEU</strong> o seu investimento, devolvemos seu investimento de forma integral em até 7 dias depois da data da Masterclass!
+    <h3 class="font-headline text-xl sm:text-2xl md:text-3xl font-semibold mb-4">Garantia Incondicional</h3>
+    <p class="font-body text-base md:text-lg text-on-surface-variant">
+      Se você comprovar que participou da imersão ao vivo conosco e achar que o conteúdo <strong class="font-headline font-semibold text-white">NÃO VALEU</strong> o seu investimento, devolvemos seu investimento de forma integral em até 7 dias depois da data da Masterclass!
     </p>
   </div>
 </section>
+
+<div class="fade-to-dark" aria-hidden="true"></div>
 
 <div class="gradient-separator"></div>
 
@@ -502,8 +663,14 @@
   <img src="Fotos-fundo/fundo-certo.png" alt="" aria-hidden="true"
        class="absolute right-0 top-1/2 -translate-y-1/2 h-[85%] w-auto object-contain pointer-events-none select-none z-0"
        style="opacity:0.07;" loading="lazy" />
+  <!-- Geo decorations -->
+  <div class="geo-decor geo-dots-2x2" style="top: 60px; left: 5%;" aria-hidden="true">
+    <span></span><span></span><span></span><span></span>
+  </div>
+  <div class="geo-decor geo-square" style="bottom: 100px; left: 4%; width: 180px; height: 180px;" aria-hidden="true"></div>
+
   <div class="max-w-6xl mx-auto relative z-10">
-    <h2 class="font-headline text-2xl sm:text-3xl md:text-5xl font-bold mb-12 md:mb-16" data-animate>
+    <h2 class="font-headline text-2xl sm:text-3xl md:text-5xl font-semibold mb-12 md:mb-16" data-animate>
       Quem vai te ensinar o <span class="gold-text">Código do Consultório Cirúrgico?</span>
     </h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12">
@@ -513,8 +680,8 @@
           <img src="Fotos-medicos/web/marcelo.jpg" alt="Marcelo Portocarrero" class="w-full h-full object-cover grayscale opacity-80" loading="lazy" decoding="async" />
         </div>
         <div>
-          <h4 class="font-headline text-lg md:text-xl font-bold gold-text">Marcelo Portocarrero</h4>
-          <p class="text-sm text-on-surface-variant mt-2">Cirurgião Plástico formado pela USP, sócio diretor do Day Hospital SelfDay.</p>
+          <h4 class="font-headline text-lg md:text-xl font-semibold gold-text">Marcelo Portocarrero</h4>
+          <p class="font-body text-sm text-on-surface-variant mt-2">Cirurgião Plástico formado pela USP, sócio diretor do Day Hospital SelfDay.</p>
         </div>
       </div>
       <!-- Lauro -->
@@ -523,8 +690,8 @@
           <img src="Fotos-medicos/web/lauro.jpg" alt="Lauro Matos" class="w-full h-full object-cover grayscale opacity-80" loading="lazy" decoding="async" />
         </div>
         <div>
-          <h4 class="font-headline text-lg md:text-xl font-bold gold-text">Lauro Matos</h4>
-          <p class="text-sm text-on-surface-variant mt-2">Cirurgião de Cabeça e Pescoço, sócio fundador do Núcleo Integrado de Cirurgia e Endocrinologia.</p>
+          <h4 class="font-headline text-lg md:text-xl font-semibold gold-text">Lauro Matos</h4>
+          <p class="font-body text-sm text-on-surface-variant mt-2">Cirurgião de Cabeça e Pescoço, sócio fundador do Núcleo Integrado de Cirurgia e Endocrinologia.</p>
         </div>
       </div>
       <!-- João -->
@@ -533,8 +700,8 @@
           <img src="Fotos-medicos/web/joao.jpg" alt="João Estrela" class="w-full h-full object-cover grayscale opacity-80" loading="lazy" decoding="async" />
         </div>
         <div>
-          <h4 class="font-headline text-lg md:text-xl font-bold gold-text">João Estrela</h4>
-          <p class="text-sm text-on-surface-variant mt-2">Urologista e Cirurgião Robótico, além de sócio fundador da Clínica URO.</p>
+          <h4 class="font-headline text-lg md:text-xl font-semibold gold-text">João Estrela</h4>
+          <p class="font-body text-sm text-on-surface-variant mt-2">Urologista e Cirurgião Robótico, além de sócio fundador da Clínica URO.</p>
         </div>
       </div>
       <!-- Eutímio -->
@@ -543,8 +710,8 @@
           <img src="Fotos-medicos/web/eutimio.jpg" alt="Eutímio Brasil" class="w-full h-full object-cover grayscale opacity-80" loading="lazy" decoding="async" />
         </div>
         <div>
-          <h4 class="font-headline text-lg md:text-xl font-bold gold-text">Eutímio Brasil</h4>
-          <p class="text-sm text-on-surface-variant mt-2">Cirurgião Vascular, sócio da Clínica CLAP e sócio fundador da CLAP Varizes.</p>
+          <h4 class="font-headline text-lg md:text-xl font-semibold gold-text">Eutímio Brasil</h4>
+          <p class="font-body text-sm text-on-surface-variant mt-2">Cirurgião Vascular, sócio da Clínica CLAP e sócio fundador da CLAP Varizes.</p>
         </div>
       </div>
     </div>
@@ -564,7 +731,7 @@
     href="https://instagram.com/foco.cirurgico/"
     target="_blank"
     rel="noopener noreferrer"
-    class="inline-flex items-center gap-3 mt-2 mb-6 text-base md:text-xl text-on-surface-variant hover:text-primary transition-colors duration-300"
+    class="inline-flex items-center gap-3 mt-2 mb-6 text-base md:text-xl text-on-surface-variant hover:text-primary transition-colors duration-300 font-body"
     aria-label="Instagram Foco Cirúrgico"
   >
     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
@@ -574,7 +741,7 @@
     </svg>
     @foco.cirurgico
   </a>
-  <p class="text-sm">© 2026 Foco Cirúrgico. Todos os direitos reservados.</p>
+  <p class="font-body text-sm">© 2026 Foco Cirúrgico. Todos os direitos reservados.</p>
 </footer>
 
 <script>
