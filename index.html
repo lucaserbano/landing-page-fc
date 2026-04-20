@@ -106,6 +106,37 @@
     display: none;
   }
 
+  /* ── Depoimentos (colunas balanceadas) ── */
+  .depo-grid { display: flex; gap: 0.6rem; align-items: flex-start; }
+  .depo-col { flex: 1 1 0; display: flex; flex-direction: column; gap: 0.6rem; min-width: 0; }
+  @media (min-width: 768px) {
+    .depo-grid { gap: 1.25rem; }
+    .depo-col { gap: 1.25rem; }
+  }
+  @media (min-width: 1024px) {
+    .depo-grid { gap: 1.5rem; }
+    .depo-col { gap: 1.5rem; }
+  }
+  .depo-grid-desktop { display: none; }
+  @media (min-width: 1024px) {
+    .depo-grid-desktop { display: flex; }
+    .depo-grid-mobile { display: none; }
+  }
+  .depo-card {
+    border-radius: 0.75rem;
+    overflow: hidden;
+    background: #ece5dd;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4), 0 0 0 1px rgba(229,168,27,0.1);
+  }
+  @media (min-width: 768px) {
+    .depo-card { border-radius: 1rem; }
+  }
+  .depo-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
   /* ── Cards ── */
   @keyframes card-bg {
     0%, 100% { background-position: 0% 50%; }
@@ -398,6 +429,46 @@
       </p>
     </div>
     <p class="font-body text-xs sm:text-sm text-on-surface pt-2">*Não atendemos às necessidades de veterinários ou dentistas.</p>
+  </div>
+</section>
+
+<!-- Depoimentos -->
+<section id="depoimentos" class="py-16 md:py-24 px-4 sm:px-6 relative z-10 overflow-hidden">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-10 md:mb-14" data-animate>
+      <p class="font-body text-xs sm:text-sm uppercase tracking-[0.3em] text-on-surface-variant mb-3">Quem já aplicou</p>
+      <h2 class="font-headline text-2xl sm:text-3xl md:text-4xl font-semibold text-white leading-tight text-balance">
+        O que cirurgiões dizem <span class="gold-text">depois de aplicar</span> o método
+      </h2>
+    </div>
+    <!-- Desktop: 3 colunas balanceadas -->
+    <div class="depo-grid depo-grid-desktop" data-animate style="--delay:80ms">
+      <div class="depo-col">
+        <figure class="depo-card"><img src="depoimentos/web/depo-3.jpg" alt="Depoimento: Minha capacidade de conversão melhorou demais" loading="lazy" /></figure>
+        <figure class="depo-card"><img src="depoimentos/web/depo-4.jpg" alt="Depoimento: Quando eu joguei a apresentação de valores pra mim, o jogo mudou" loading="lazy" /></figure>
+      </div>
+      <div class="depo-col">
+        <figure class="depo-card"><img src="depoimentos/web/depo-5.jpg" alt="Depoimento: Minha capacidade de converter uma cirurgia melhorou" loading="lazy" /></figure>
+        <figure class="depo-card"><img src="depoimentos/web/depo-1.jpg" alt="Depoimento: Apresentar o orçamento de forma estruturada é outra vida" loading="lazy" /></figure>
+      </div>
+      <div class="depo-col">
+        <figure class="depo-card"><img src="depoimentos/web/depo-2.jpg" alt="Depoimento: Saí dos plantões fixos de sobreaviso, fazia anos que não tinha um período livre" loading="lazy" /></figure>
+        <figure class="depo-card"><img src="depoimentos/web/depo-6.jpg" alt="Depoimento: Já me ajudou a fechar muitas cirurgias" loading="lazy" /></figure>
+      </div>
+    </div>
+    <!-- Mobile/Tablet: 2 colunas balanceadas -->
+    <div class="depo-grid depo-grid-mobile" data-animate style="--delay:80ms">
+      <div class="depo-col">
+        <figure class="depo-card"><img src="depoimentos/web/depo-3.jpg" alt="Depoimento: Minha capacidade de conversão melhorou demais" loading="lazy" /></figure>
+        <figure class="depo-card"><img src="depoimentos/web/depo-4.jpg" alt="Depoimento: Quando eu joguei a apresentação de valores pra mim, o jogo mudou" loading="lazy" /></figure>
+        <figure class="depo-card"><img src="depoimentos/web/depo-6.jpg" alt="Depoimento: Já me ajudou a fechar muitas cirurgias" loading="lazy" /></figure>
+      </div>
+      <div class="depo-col">
+        <figure class="depo-card"><img src="depoimentos/web/depo-5.jpg" alt="Depoimento: Minha capacidade de converter uma cirurgia melhorou" loading="lazy" /></figure>
+        <figure class="depo-card"><img src="depoimentos/web/depo-1.jpg" alt="Depoimento: Apresentar o orçamento de forma estruturada é outra vida" loading="lazy" /></figure>
+        <figure class="depo-card"><img src="depoimentos/web/depo-2.jpg" alt="Depoimento: Saí dos plantões fixos de sobreaviso, fazia anos que não tinha um período livre" loading="lazy" /></figure>
+      </div>
+    </div>
   </div>
 </section>
 
