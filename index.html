@@ -122,6 +122,11 @@
   /* ── Depoimentos (colunas balanceadas) ── */
   .depo-grid { display: flex; gap: 0.6rem; align-items: flex-start; }
   .depo-col { flex: 1 1 0; display: flex; flex-direction: column; gap: 0.6rem; min-width: 0; }
+  /* Phones (<768px): 1 coluna empilhada — cols viram contents para todos os figures virarem filhos diretos do grid em fluxo vertical */
+  @media (max-width: 767px) {
+    .depo-grid-mobile { flex-direction: column; align-items: stretch; }
+    .depo-grid-mobile .depo-col { display: contents; }
+  }
   @media (min-width: 768px) {
     .depo-grid { gap: 1.25rem; }
     .depo-col { gap: 1.25rem; }
@@ -469,7 +474,7 @@
         <figure class="depo-card"><img src="depoimentos/web/depo-6.jpg" alt="Depoimento: Já me ajudou a fechar muitas cirurgias" loading="lazy" /></figure>
       </div>
     </div>
-    <!-- Mobile/Tablet: 2 colunas balanceadas -->
+    <!-- Mobile/Tablet: 2 colunas balanceadas (1 coluna em phones, ver CSS) -->
     <div class="depo-grid depo-grid-mobile" data-animate style="--delay:80ms">
       <div class="depo-col">
         <figure class="depo-card"><img src="depoimentos/web/depo-3.jpg" alt="Depoimento: Minha capacidade de conversão melhorou demais" loading="lazy" /></figure>
